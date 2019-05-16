@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/100/three.js"></script>
+  <script> src="./threejs-loader/OBJLoader.js"</script>
+  <script> src="./threejs-loader/MTLLoader.js"</script>
+  <title>Document</title>
+</head>
+<body style="overflow: hidden">
+  
+<script>
+  const scene = new THREE.Scene()
+
+  const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 )
+  directionalLight.position.set(-20, 0, 100)
+  scene.add( directionalLight );
+
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth/ window.innerHeight, 0.1, 1000)
+  camera.position.z = 5
+
+  const renderer = new THREE.WebGLRenderer()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    document.body.appendChild(renderer.domElement)
+
+    const objLoader = new THREE.OBJLoader()
+    objLoader.setPath('/blender-files/')
+
+    const mtlLoader = new THREE.MTLLoader()
+    mtlLoader.setPath('/blender-files/')
+
+    new Promise((resolve) => {
+      mtlLoader.load('logo.mtl', (materials) => {
+        resolve(materials)
+      });
+    })
+    .then((materials) => {
+      materials.preload()
+      objLoader.setMaterials(materials)
+      objLoader.load('logo.obj', (object) => {
+        cube = object
+        scene.add(object)
+      });
+    });
+
+  function render() {
+    requestAnimationFrame(render)
+    render.render(scene, camera)
+  }
+
+  render()
+
+
+</script>
+</body>
+</html>

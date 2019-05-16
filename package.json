@@ -1,0 +1,28 @@
+{
+  "name": "blenderthree",
+  "version": "1.0.0",
+  "description": "Using Blender to make complex shapes, using three.js to render them in the browser.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cfirmi/Blender-THREE.git"
+  },
+  "keywords": [
+    "Blender",
+    "three.js",
+    "express",
+    "npm"
+  ],
+  "author": "christian firmi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cfirmi/Blender-THREE/issues"
+  },
+  "homepage": "https://github.com/cfirmi/Blender-THREE#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
